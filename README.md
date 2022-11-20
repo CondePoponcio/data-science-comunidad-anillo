@@ -9,4 +9,8 @@ En la carpeta stream se encuentra en script de python para procesar los datos. A
 ```
 
 ## Observacion
-Cuando vayan a ejecutar un script haganlo desde la misma carpeta del código.
+- Cuando vayan a ejecutar un script haganlo desde la misma carpeta del código.
+- Los archivos de la carpeta GEO son los códigos que se ejecutan para realizar los trabajos de extracción en el servidor GEO.
+
+## Despliegue
+Si poseen el plugin de VSCode de DevContainer, entonces pueden ejecutar automáticamente todo el ambiente de python ya dockerizado con la opción F1 -> Reopen in container.
