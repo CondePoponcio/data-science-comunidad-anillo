@@ -1,0 +1,6 @@
+buses/
+paraderosrutas/
+rutas/
+paraderos*/
+*.zip
+stream/*.csv
