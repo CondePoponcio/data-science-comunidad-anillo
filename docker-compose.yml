@@ -12,7 +12,7 @@ services:
             restart: always
             context: ./db
         volumes:
-            - ./volume:/docker-entrypoint-initdb.d/
+            - ./db/volume:/docker-entrypoint-initdb.d/
         
         
     stream:
