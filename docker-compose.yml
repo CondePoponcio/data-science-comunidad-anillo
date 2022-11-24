@@ -9,7 +9,6 @@ services:
             - '5432:5432'
         build:
             dockerfile: Dockerfile
-            restart: always
             context: ./db
         volumes:
             - ./db/volume:/docker-entrypoint-initdb.d/
