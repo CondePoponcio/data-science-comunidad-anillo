@@ -4,7 +4,7 @@ rutas/
 paraderos*/
 *.zip
 stream/*.csv
-
+build/workspace/resultados
 
 
 

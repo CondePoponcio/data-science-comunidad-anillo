@@ -21,7 +21,9 @@ services:
             - ./:/workspace
         command: tail -f /dev/null
     jupyterlab:
-        image: andreper/jupyterlab:3.0.0-spark-3.0.0
+        build:
+            context: ./jupyter
+            dockerfile: Dockerfile
         container_name: jupyterlab
         ports:
             - 8888:8888
