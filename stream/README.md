@@ -1,3 +1,0 @@
-# data-science-comunidad-anillo
-
-

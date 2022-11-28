@@ -1,7 +1,7 @@
-FROM andreper/jupyterlab:3.0.0-spark-3.0.0
+FROM jupyterlab:3.2.0-spark-3.2.0
 
 RUN apt update
 
 RUN python -m pip install --upgrade pip
 
-RUN pip install psycopg2-binary
+RUN pip install psycopg2-binary sqlalchemy pyarrow numpy pandas

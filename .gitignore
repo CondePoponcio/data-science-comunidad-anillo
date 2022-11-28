@@ -2,11 +2,11 @@ buses/
 paraderosrutas/
 rutas/
 paraderos*/
-*.zip
+
 stream/*.csv
 build/workspace/resultados
-
-
+db/volume/pgdata
+*.csv
 
 
 # ----------------------------SPARK PROJECT--------------------------------------------
