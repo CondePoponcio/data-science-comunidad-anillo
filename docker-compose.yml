@@ -12,8 +12,8 @@ services:
             dockerfile: Dockerfile
             context: ./db
         volumes:
-            - ./db/volume/init/init.sql:/docker-entrypoint-initdb.d/init.sql
-            - ./volume/pgdata:/var/lib/postgresql/data
+            - ./db/volume/init/:/docker-entrypoint-initdb.d/
+            - ./db/volume/pgdata:/var/lib/postgresql/data
     jupyterlab:
         build:
             context: ./jupyter
