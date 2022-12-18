@@ -29,6 +29,8 @@ ENV SPARK_MASTER_HOST spark-master
 ENV SPARK_MASTER_PORT 7077
 ENV PYSPARK_PYTHON python3
 
+# Install pip dependencies
+RUN apt update && apt install -y python3-pip && pip3 install pandas==1.4.4 pyarrow koala shapely
 # -- Runtime
 
 WORKDIR ${SPARK_HOME}
