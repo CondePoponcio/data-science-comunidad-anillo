@@ -16,6 +16,7 @@ VALLE: 9:00 a 17:59 - 20:00 a 20:44
 BAJO: 0:00 a 6:59 - 20:45 a 23:59
 
 '''
+csv = 'D18I'
 #*************************
 def H_Punta(data_k,geo,geo_lat,geo_lon,dataframe_buses,n,S):
     #HORA PUNTA
@@ -35,6 +36,7 @@ def H_Punta(data_k,geo,geo_lat,geo_lon,dataframe_buses,n,S):
             dif_times.append((date_list[k]-date_list[k-1]).total_seconds())
 
     mean = np.mean(dif_times)
+    dataframe_buses['servicio'].append(csv)
     dataframe_buses['paradero'].append(n)
     dataframe_buses['tiempo_promedio'].append(mean)
     dataframe_buses['geo_parader'].append(geo)
@@ -70,6 +72,7 @@ def H_Valle(data_k,geo,geo_lat,geo_lon,dataframe_buses,n,S):
             dif_times.append((date_list[k]-date_list[k-1]).total_seconds())
 
     mean = np.mean(dif_times)
+    dataframe_buses['servicio'].append(csv)
     dataframe_buses['paradero'].append(n)
     dataframe_buses['tiempo_promedio'].append(mean)
     dataframe_buses['geo_parader'].append(geo)
@@ -104,6 +107,7 @@ def H_Bajo(data_k,geo,geo_lat,geo_lon,dataframe_buses,n,S):
             dif_times.append((date_list[k]-date_list[k-1]).total_seconds())
 
     mean = np.mean(dif_times)
+    dataframe_buses['servicio'].append(csv)
     dataframe_buses['paradero'].append(n)
     dataframe_buses['tiempo_promedio'].append(mean)
     dataframe_buses['geo_parader'].append(geo)
@@ -132,6 +136,7 @@ def H_All(data_k,geo,geo_lat,geo_lon,dataframe_buses,n):
             dif_times.append((date_list[k]-date_list[k-1]).total_seconds())
 
     mean = np.mean(dif_times)
+    dataframe_buses['servicio'].append(csv)
     dataframe_buses['paradero'].append(n)
     dataframe_buses['tiempo_promedio'].append(mean)
     dataframe_buses['geo_parader'].append(geo)
@@ -139,7 +144,7 @@ def H_All(data_k,geo,geo_lat,geo_lon,dataframe_buses,n):
     dataframe_buses['geo_parader_lon'].append(geo_lon)
     if mean < 600:
         dataframe_buses['calificacion'].append(2)
-    elif mean == 600:
+    elif mean > 600 and mean < 700 :
         dataframe_buses['calificacion'].append(1)
     else:
         dataframe_buses['calificacion'].append(0)
@@ -154,7 +159,7 @@ def getPromRegcBus():#Regularidad
 
 
 
-    dataframe_ruta = pd.read_csv("./E04I.csv")
+    dataframe_ruta = pd.read_csv("./"+csv+"/"+csv+".csv")
     #temp2 = dataframe_ruta.groupby(['parader'], group_keys=True, as_index=True).apply(lambda x: x)
     temp4 = dataframe_ruta.groupby(['bus'], group_keys=True, as_index=True).apply(lambda x: x)
     #print(temp2)
@@ -193,14 +198,14 @@ def getPromRegcBus():#Regularidad
             dataframe_list.append(df_g)
 
 
-    dataframe_buses = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[]}
+    dataframe_buses = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[]}
     # ESTAN ASI PORQUE NO SE Q WEA CON LOS PUNTEROS
-    dataframe_buses_p1 = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
-    dataframe_buses_p2 = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
-    dataframe_buses_v1 = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
-    dataframe_buses_v2 = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
-    dataframe_buses_b1 = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
-    dataframe_buses_b2 = {'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
+    dataframe_buses_p1 = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
+    dataframe_buses_p2 = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
+    dataframe_buses_v1 = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
+    dataframe_buses_v2 = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
+    dataframe_buses_b1 = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
+    dataframe_buses_b2 = {'servicio':[],'paradero':[],'tiempo_promedio':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[],'zona_h':[],'zona_h_num':[],'seccion':[]}
 
 
     dataf = pd.concat(dataframe_list)
@@ -231,18 +236,17 @@ def getPromRegcBus():#Regularidad
     dataframe_total_busparadero_valle2 = pd.DataFrame(dataframe_buses_v2)
     dataframe_total_busparadero_bajo1 = pd.DataFrame(dataframe_buses_b1)
     dataframe_total_busparadero_bajo2 = pd.DataFrame(dataframe_buses_b2)
+    arr_df = [dataframe_total_busparadero_punta1,dataframe_total_busparadero_punta2,dataframe_total_busparadero_valle1,dataframe_total_busparadero_valle2,dataframe_total_busparadero_bajo1,dataframe_total_busparadero_bajo2]
+
+    
+    dataframe_total_busparadero_timepos = pd.concat(arr_df)
     dataframe_total_busparadero = pd.DataFrame(dataframe_buses)
     #print(dataframe_total_busparadero_punta1,dataframe_total_busparadero_punta2,dataframe_total_busparadero_valle1,dataframe_total_busparadero_valle2,dataframe_total_busparadero_bajo1,dataframe_total_busparadero_bajo2,dataframe_total_busparadero)
 
-    dataframe_total_busparadero_punta1.to_csv('E04I_PUNTA1.csv')
-    dataframe_total_busparadero_punta2.to_csv('E04I_PUNTA2.csv')
-    dataframe_total_busparadero_valle1.to_csv('E04I_VALLE1.csv')
-    dataframe_total_busparadero_valle2.to_csv('E04I_VALLE2.csv')
-    dataframe_total_busparadero_bajo1.to_csv('E04I_BAJO1.csv')
-    dataframe_total_busparadero_bajo2.to_csv('E04I_BAJO2.csv')
-    dataframe_total_busparadero.to_csv('E04I_ALL.csv')
+    dataframe_total_busparadero_timepos.to_csv("./"+csv+"/"+csv+'Regularidad Tiempos.csv', index=False)
+    dataframe_total_busparadero.to_csv("./"+csv+"/"+csv+'Regularidad ALL.csv', index=False)
 
-def get_Bus_Cant_Prom_Por_Paredero():#Frecuenica
+def get_Bus_Cant_Prom_Por_Paredero():#Frecuencia
     Hour_list_from = ['2018-06-13 00:00:00+00','2018-06-13 01:00:00+00','2018-06-13 02:00:00+00','2018-06-13 03:00:00+00','2018-06-13 04:00:00+00','2018-06-13 05:00:00+00','2018-06-13 06:00:00+00','2018-06-13 07:00:00+00','2018-06-13 08:00:00+00','2018-06-13 09:00:00+00','2018-06-13 10:00:00+00','2018-06-13 11:00:00+00','2018-06-13 12:00:00+00','2018-06-13 13:00:00+00','2018-06-13 14:00:00+00','2018-06-13 15:00:00+00','2018-06-13 16:00:00+00','2018-06-13 18:00:00+00','2018-06-13 19:00:00+00','2018-06-13 20:00:00+00','2018-06-13 21:00:00+00','2018-06-13 22:00:00+00','2018-06-13 23:00:00+00']
 
     Hour_list_to = ['2018-06-13 00:59:59+00','2018-06-13 01:59:59+00','2018-06-13 02:59:59+00','2018-06-13 03:59:59+00','2018-06-13 04:59:59+00','2018-06-13 05:59:59+00','2018-06-13 06:59:59+00','2018-06-13 07:59:59+00','2018-06-13 08:59:59+00','2018-06-13 09:59:59+00','2018-06-13 10:59:59+00','2018-06-13 11:59:59+00','2018-06-13 12:59:59+00','2018-06-13 13:59:59+00','2018-06-13 14:59:59+00','2018-06-13 15:59:59+00','2018-06-13 16:59:59+00','2018-06-13 18:59:59+00','2018-06-13 19:59:59+00','2018-06-13 20:59:59+00','2018-06-13 21:59:59+00','2018-06-13 22:59:59+00','2018-06-13 23:59:59+00']
@@ -252,14 +256,14 @@ def get_Bus_Cant_Prom_Por_Paredero():#Frecuenica
     #print(result.index.values)
     #print(result.index.levels)
 
-    dataframe_ruta = pd.read_csv("./E04I.csv")
+    dataframe_ruta = pd.read_csv("./"+csv+"/"+csv+".csv")
     temp2 = dataframe_ruta.groupby(['parader'], group_keys=True, as_index=True).apply(lambda x: x)
     #temp4 = dataframe_ruta.groupby(['parder_geom'], group_keys=True, as_index=True).apply(lambda x: x)
     list_paredors = temp2.index.levels[0]
     #temp3 = temp2.loc['PA146']
     #a = temp2.loc['PA146']['fechahora'].tolist()[0]
 
-    dataframe_buses = {'paradero':[],'promedio_bus_hora':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[]}
+    dataframe_buses = ({'servicio':[],'paradero':[],'promedio_bus_hora':[],'geo_parader':[],'geo_parader_lat':[],'geo_parader_lon':[],'calificacion':[]})
     #print(len(Hour_list_from))
     #print(len(Hour_list_to))
 
@@ -277,6 +281,7 @@ def get_Bus_Cant_Prom_Por_Paredero():#Frecuenica
             List_total_buses.append(df['bus'].nunique())
             #Lista_interval.append(Hour_list_from[j]+' to '+Hour_list_to[j])
         mean = (sum(List_total_buses) / 24)
+        dataframe_buses['servicio'].append(csv)
         dataframe_buses['paradero'].append(i)
         dataframe_buses['promedio_bus_hora'].append(mean)
         dataframe_buses['geo_parader'].append(geo)
@@ -284,7 +289,7 @@ def get_Bus_Cant_Prom_Por_Paredero():#Frecuenica
         dataframe_buses['geo_parader_lon'].append(geo_lon)
         if mean < 5:
             dataframe_buses['calificacion'].append(0)
-        elif mean > 6:
+        elif  mean > 5 and mean < 7:
             dataframe_buses['calificacion'].append(1)
         else:
             dataframe_buses['calificacion'].append(2)
@@ -296,12 +301,12 @@ def get_Bus_Cant_Prom_Por_Paredero():#Frecuenica
 
     dataframe_total_busparadero = pd.DataFrame(dataframe_buses)
     print(dataframe_total_busparadero)
-    dataframe_total_busparadero.to_csv('E04I_NOTED.csv')
+    dataframe_total_busparadero.to_csv("./"+csv+"/"+csv+'Frecuencia.csv', index=False)
 
     
 #getHoraProm()  
 getPromRegcBus()
-
+get_Bus_Cant_Prom_Por_Paredero()
 #print(df['bus'].nunique())
 
 #dataframe_bus = pd.read_csv("./buses.csv", chunksize=500000)
